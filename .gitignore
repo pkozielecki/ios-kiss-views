@@ -12,6 +12,8 @@ xcuserdata/
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
 build/
 DerivedData/
+KISS Views/.idea
+KISS Views/KISS Views.xcodeproj/project.xcworkspace
 *.moved-aside
 *.pbxuser
 !default.pbxuser

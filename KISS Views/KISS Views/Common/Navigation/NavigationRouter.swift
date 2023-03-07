@@ -69,7 +69,8 @@ final class DefaultNavigationRouter: NavigationRouter {
     }
 
     func push(screen: NavigationRoute.Screen) {
-        navigationStack.append(.makeScreen(named: screen))
+        let route = NavigationRoute.makeScreen(named: screen)
+        navigationStack.append(route)
         objectWillChange.send()
     }
 

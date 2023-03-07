@@ -1,14 +1,12 @@
 //
-//  NoNetworkErrorViewModel.swift
+//  SecurityIssuesErrorViewModel.swift
 //  KISS Views
 //
 
 import Foundation
-import UIKit
-import Combine
 
-/// A view model for No Network app error screen.
-final class NoNetworkErrorViewModel: ErrorViewModel {
+/// A view model for Compromised app error screen.
+final class SecurityIssuesErrorViewModel: ErrorViewModel {
 
     /// - SeeAlso: ErrorViewModel.viewConfiguration
     @Published var viewConfiguration: ErrorViewConfiguration
@@ -21,18 +19,25 @@ final class NoNetworkErrorViewModel: ErrorViewModel {
     /// - SeeAlso: ErrorViewModel.presentationMode
     let presentationMode: PresentationMode
 
-    /// A default NoNetworkErrorViewModel initializer.
+    /// A default SecurityIssuesErrorViewModel initializer.
     ///
     /// - Parameters:
     ///   - router: a navigation router.
+    ///   - error: an application security error.
     ///   - presentationMode: a screen presentation mode.
     init(
         router: any NavigationRouter,
+        error: ApplicationSecurityError,
         presentationMode: PresentationMode
     ) {
         self.router = router
         self.presentationMode = presentationMode
-        viewConfiguration = .noNetwork
+        switch error {
+        case .jailbrokenDevice:
+            viewConfiguration = .jailbrokenApp
+        case .appTamperedWith:
+            viewConfiguration = .appTamperedWith
+        }
     }
 
     /// - SeeAlso: ErrorViewModel.onPrimaryButtonTap()

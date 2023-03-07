@@ -21,7 +21,7 @@ struct ErrorViewDescriptionModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .lineLimit(4)
+            .lineLimit(10)
             .multilineTextAlignment(.center)
             .font(.body)
     }

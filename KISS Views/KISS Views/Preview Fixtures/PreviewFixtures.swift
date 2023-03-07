@@ -13,6 +13,9 @@ final class PreviewErrorViewModel: ErrorViewModel {
     var viewConfigurationPublished: Published<ErrorViewConfiguration> { _viewConfiguration }
     var viewConfigurationPublisher: Published<ErrorViewConfiguration>.Publisher { $viewConfiguration }
 
+    let router: any NavigationRouter = PreviewNavigationRouter()
+    let presentationMode: PresentationMode = .inline
+
     init(viewConfiguration: ErrorViewConfiguration) {
         self.viewConfiguration = viewConfiguration
     }

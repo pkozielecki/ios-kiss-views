@@ -28,5 +28,11 @@ extension PopupRoute {
 
         /// A No-Network app popup.
         case noNetwork
+
+        /// A Backend error app popup.
+        case backendError(NetworkError)
+
+        /// An app with security issues popup.
+        case securityIssues(ApplicationSecurityError)
     }
 }

@@ -18,27 +18,58 @@ struct HomeView<Router: NavigationRouter>: View {
                     router.set(navigationStack: stack)
                 })
         ) {
-            VStack(spacing: 10) {
+            VStack {
                 Spacer()
                 Text("KISS Views showcase")
                     .font(.title)
                     .bold()
                 Spacer()
-                Text("APP SCREENS:")
-                NavigationLink(value: NavigationRoute.makeScreen(named: NavigationRoute.Screen.noNetwork)) {
-                    Text("Network error - from link")
-                }
-                Button {
-                    router.push(screen: .noNetwork)
-                } label: {
-                    Text("Network error - from router")
+                VStack(spacing: 10) {
+                    Text("APP SCREENS (from router):")
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .noNetwork)) {
+                        Text("Network error")
+                    }
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .backendError(.serverMaintenance(message: nil)))) {
+                        Text("Backend under maintenance")
+                    }
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .backendError(NetworkError(code: 511, message: "Database init failed")!))) {
+                        Text("Backend down")
+                    }
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.jailbrokenDevice))) {
+                        Text("Jailbroken device")
+                    }
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.appTamperedWith))) {
+                        Text("Tampered app")
+                    }
                 }
                 Spacer()
-                Text("APP POPUPS:")
-                Button {
-                    router.present(popup: .noNetwork)
-                } label: {
-                    Text("Network error")
+                VStack(spacing: 10) {
+                    Text("APP POPUPS: (from nav link)")
+                    Button {
+                        router.present(popup: .noNetwork)
+                    } label: {
+                        Text("Network error")
+                    }
+                    Button {
+                        router.present(popup: .backendError(.serverMaintenance(message: nil)))
+                    } label: {
+                        Text("Backend under maintenance")
+                    }
+                    Button {
+                        router.present(popup: .backendError(NetworkError(code: 511, message: "Database init failed")!))
+                    } label: {
+                        Text("Backend down")
+                    }
+                    Button {
+                        router.present(popup: .securityIssues(.jailbrokenDevice))
+                    } label: {
+                        Text("Jailbroken device")
+                    }
+                    Button {
+                        router.present(popup: .securityIssues(.appTamperedWith))
+                    } label: {
+                        Text("Tampered app")
+                    }
                 }
                 Spacer()
             }
@@ -47,6 +78,10 @@ struct HomeView<Router: NavigationRouter>: View {
                 switch route.screen {
                 case .noNetwork:
                     makeNoNetworkErrorView(presentationMode: .inline)
+                case let .backendError(error):
+                    makeBackendErrorView(error: error, presentationMode: .inline)
+                case let .securityIssues(error):
+                    makeSecurityIssuesErrorView(error: error, presentationMode: .inline)
                 }
             }
             .sheet(item: $router.presentedPopup) { _ in
@@ -55,6 +90,10 @@ struct HomeView<Router: NavigationRouter>: View {
                     switch $popup.wrappedValue.popup {
                     case .noNetwork:
                         makeNoNetworkErrorView(presentationMode: .popup)
+                    case let .backendError(error):
+                        makeBackendErrorView(error: error, presentationMode: .popup)
+                    case let .securityIssues(error):
+                        makeSecurityIssuesErrorView(error: error, presentationMode: .popup)
                     }
                 }
             }
@@ -66,6 +105,24 @@ extension HomeView {
 
     func makeNoNetworkErrorView(presentationMode: PresentationMode) -> ErrorView<NoNetworkErrorViewModel> {
         let viewModel = NoNetworkErrorViewModel(router: router, presentationMode: presentationMode)
+        return ErrorView(viewModel: viewModel)
+    }
+
+    func makeBackendErrorView(error: NetworkError, presentationMode: PresentationMode) -> ErrorView<BackendUnavailableErrorViewModel> {
+        let viewModel = BackendUnavailableErrorViewModel(
+            router: router,
+            error: error,
+            presentationMode: presentationMode
+        )
+        return ErrorView(viewModel: viewModel)
+    }
+
+    func makeSecurityIssuesErrorView(error: ApplicationSecurityError, presentationMode: PresentationMode) -> ErrorView<SecurityIssuesErrorViewModel> {
+        let viewModel = SecurityIssuesErrorViewModel(
+            router: router,
+            error: error,
+            presentationMode: presentationMode
+        )
         return ErrorView(viewModel: viewModel)
     }
 }

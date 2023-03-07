@@ -28,5 +28,11 @@ extension NavigationRoute {
 
         /// A No-Network app screen.
         case noNetwork
+
+        /// A Backend error app screen.
+        case backendError(NetworkError)
+
+        /// An app with security issues screen.
+        case securityIssues(ApplicationSecurityError)
     }
 }

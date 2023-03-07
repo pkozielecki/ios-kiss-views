@@ -11,6 +11,8 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
 
+            Spacer()
+
             //  Lead icon:
             Image(uiImage: viewModel.viewConfiguration.icon)
                 .leadIcon()
@@ -39,7 +41,7 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
                 }
             }
         }
-        .padding(EdgeInsets(top: 50, leading: 10, bottom: 30, trailing: 10))
+        .padding(EdgeInsets(top: 50, leading: 20, bottom: 30, trailing: 20))
         .navigationBarHidden(true)
     }
 }

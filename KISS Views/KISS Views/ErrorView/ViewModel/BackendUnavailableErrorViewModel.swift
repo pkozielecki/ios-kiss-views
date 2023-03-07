@@ -1,14 +1,11 @@
 //
-//  NoNetworkErrorViewModel.swift
+//  BackendUnavailableErrorViewModel.swift
 //  KISS Views
 //
 
 import Foundation
-import UIKit
-import Combine
 
-/// A view model for No Network app error screen.
-final class NoNetworkErrorViewModel: ErrorViewModel {
+final class BackendUnavailableErrorViewModel: ErrorViewModel {
 
     /// - SeeAlso: ErrorViewModel.viewConfiguration
     @Published var viewConfiguration: ErrorViewConfiguration
@@ -21,18 +18,27 @@ final class NoNetworkErrorViewModel: ErrorViewModel {
     /// - SeeAlso: ErrorViewModel.presentationMode
     let presentationMode: PresentationMode
 
-    /// A default NoNetworkErrorViewModel initializer.
+    /// A default BackendUnavailableErrorViewModel initializer.
     ///
     /// - Parameters:
     ///   - router: a navigation router.
+    ///   - error: a network error.
     ///   - presentationMode: a screen presentation mode.
     init(
         router: any NavigationRouter,
+        error: NetworkError,
         presentationMode: PresentationMode
     ) {
         self.router = router
         self.presentationMode = presentationMode
-        viewConfiguration = .noNetwork
+        switch error {
+        case .serverMaintenance:
+            viewConfiguration = .backendMaintenance
+        case let .serverError(code, message):
+            viewConfiguration = .makeBackendDownConfiguration(errorCode: code, message: message)
+        default:
+            fatalError("Invalid error type: expected serverMaintenance or serverError, got: \(error)")
+        }
     }
 
     /// - SeeAlso: ErrorViewModel.onPrimaryButtonTap()

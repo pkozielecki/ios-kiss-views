@@ -37,7 +37,7 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
             /// Secondary CTA button:
             if let secondaryLabel = viewModel.viewConfiguration.secondaryButtonLabel {
                 SecondaryButton(label: secondaryLabel) {
-                    viewModel.onPrimarySecondaryTap()
+                    viewModel.onSecondaryButtonTap()
                 }
             }
         }
@@ -48,6 +48,6 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(viewModel: PreviewErrorViewModel(viewConfiguration: .noNetwork))
+        ErrorView(viewModel: PreviewErrorViewModel(viewConfiguration: .makeAppUpdateRequiredConfiguration(minimalVersion: "1.1.0", currentVersion: "1.0.0")))
     }
 }

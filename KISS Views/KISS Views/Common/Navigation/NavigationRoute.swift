@@ -34,5 +34,8 @@ extension NavigationRoute {
 
         /// An app with security issues screen.
         case securityIssues(ApplicationSecurityError)
+
+        /// An app update availability screen.
+        case appUpdate
     }
 }

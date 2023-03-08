@@ -1,11 +1,12 @@
 //
-//  BackendUnavailableErrorViewModel.swift
+//  SecurityIssuesErrorViewModel.swift
 //  KISS Views
 //
 
 import Foundation
 
-final class BackendUnavailableErrorViewModel: ErrorViewModel {
+/// A view model for App Security Issues error screen.
+final class SecurityIssuesErrorViewModel: ErrorViewModel {
 
     /// - SeeAlso: ErrorViewModel.viewConfiguration
     @Published var viewConfiguration: ErrorViewConfiguration
@@ -18,26 +19,24 @@ final class BackendUnavailableErrorViewModel: ErrorViewModel {
     /// - SeeAlso: ErrorViewModel.presentationMode
     let presentationMode: PresentationMode
 
-    /// A default BackendUnavailableErrorViewModel initializer.
+    /// A default SecurityIssuesErrorViewModel initializer.
     ///
     /// - Parameters:
     ///   - router: a navigation router.
-    ///   - error: a network error.
+    ///   - error: an application security error.
     ///   - presentationMode: a screen presentation mode.
     init(
         router: any NavigationRouter,
-        error: NetworkError,
+        error: ApplicationSecurityError,
         presentationMode: PresentationMode
     ) {
         self.router = router
         self.presentationMode = presentationMode
         switch error {
-        case .serverMaintenance:
-            viewConfiguration = .backendMaintenance
-        case let .serverError(code, message):
-            viewConfiguration = .makeBackendDownConfiguration(errorCode: code, message: message)
-        default:
-            fatalError("Invalid error type: expected serverMaintenance or serverError, got: \(error)")
+        case .jailbrokenDevice:
+            viewConfiguration = .jailbrokenApp
+        case .appTamperedWith:
+            viewConfiguration = .appTamperedWith
         }
     }
 

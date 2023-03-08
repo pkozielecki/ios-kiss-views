@@ -34,5 +34,8 @@ extension PopupRoute {
 
         /// An app with security issues popup.
         case securityIssues(ApplicationSecurityError)
+
+        /// An app update availability popup.
+        case appUpdate
     }
 }

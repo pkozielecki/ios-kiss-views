@@ -7,8 +7,7 @@ import SwiftUI
 
 extension Image {
     func leadIcon() -> some View {
-        resizable()
-            .aspectRatio(contentMode: .fit)
+        aspectRatio(1, contentMode: .fit)
             .frame(width: 150, height: 150)
     }
 }

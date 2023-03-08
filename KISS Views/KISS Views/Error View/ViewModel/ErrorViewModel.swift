@@ -24,14 +24,14 @@ protocol ErrorViewModel: AnyObject, ObservableObject {
     func onPrimaryButtonTap()
 
     /// A secondary button tap callback.
-    func onPrimarySecondaryTap()
+    func onSecondaryButtonTap()
 }
 
 extension ErrorViewModel {
 
     func onPrimaryButtonTap() {}
 
-    func onPrimarySecondaryTap() {}
+    func onSecondaryButtonTap() {}
 
     func popOrDismiss() {
         switch presentationMode {

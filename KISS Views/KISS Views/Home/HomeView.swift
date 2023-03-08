@@ -41,6 +41,9 @@ struct HomeView<Router: NavigationRouter>: View {
                     NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.appTamperedWith))) {
                         Text("Tampered app")
                     }
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .appUpdate)) {
+                        Text("App update availability")
+                    }
                 }
                 Spacer()
                 VStack(spacing: 10) {
@@ -70,6 +73,11 @@ struct HomeView<Router: NavigationRouter>: View {
                     } label: {
                         Text("Tampered app")
                     }
+                    Button {
+                        router.present(popup: .appUpdate)
+                    } label: {
+                        Text("App update availability")
+                    }
                 }
                 Spacer()
             }
@@ -82,6 +90,8 @@ struct HomeView<Router: NavigationRouter>: View {
                     makeBackendErrorView(error: error, presentationMode: .inline)
                 case let .securityIssues(error):
                     makeSecurityIssuesErrorView(error: error, presentationMode: .inline)
+                case .appUpdate:
+                    makeAppUpdateInfoView(presentationMode: .inline)
                 }
             }
             .sheet(item: $router.presentedPopup) { _ in
@@ -94,6 +104,8 @@ struct HomeView<Router: NavigationRouter>: View {
                         makeBackendErrorView(error: error, presentationMode: .popup)
                     case let .securityIssues(error):
                         makeSecurityIssuesErrorView(error: error, presentationMode: .popup)
+                    case .appUpdate:
+                        makeAppUpdateInfoView(presentationMode: .popup)
                     }
                 }
             }
@@ -122,6 +134,20 @@ extension HomeView {
             router: router,
             error: error,
             presentationMode: presentationMode
+        )
+        return ErrorView(viewModel: viewModel)
+    }
+
+    func makeAppUpdateInfoView(presentationMode: PresentationMode) -> ErrorView<AppUpdateRequiredErrorViewModel> {
+        // Discussion: Choose one of the configurations below:
+        let provider = DefaultAppStoreVersionProvider(lastReleasedAppVersion: "1.0.0", minimalRequiredAppVersion: "1.0.0") // The app is up to date.
+//        let provider = DefaultAppStoreVersionProvider(lastReleasedAppVersion: "1.2.0", minimalRequiredAppVersion: "1.0.0") // The app is outdated but still supported.
+//        let provider = DefaultAppStoreVersionProvider(lastReleasedAppVersion: "1.2.0", minimalRequiredAppVersion: "1.1.0") // The app is outdated and must be updated.
+        let checker = DefaultAppUpdateAvailabilityChecker(appStoreVersionProvider: provider)
+        let viewModel = AppUpdateRequiredErrorViewModel(
+            router: router,
+            presentationMode: presentationMode,
+            appUpdateAvailabilityChecker: checker
         )
         return ErrorView(viewModel: viewModel)
     }

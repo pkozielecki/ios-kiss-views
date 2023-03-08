@@ -32,7 +32,7 @@ extension ErrorViewConfiguration {
         ErrorViewConfiguration(
             title: "The server is under maintenance",
             description: "We're sorry, but our server is being updated.\nPlease try again in a couple of minutes.",
-            icon: LeadIcon.maintenance.image,
+            icon: LeadIcon.backendMaintenance.image,
             primaryButtonLabel: "Try again",
             secondaryButtonLabel: nil
         )
@@ -59,6 +59,17 @@ extension ErrorViewConfiguration {
             secondaryButtonLabel: nil
         )
     }
+
+    /// An app screen showing no updates required.
+    static var appUpdateNotAvailableConfiguration: ErrorViewConfiguration {
+        ErrorViewConfiguration(
+            title: "Your app is up to date!",
+            description: "No action required! Just enjoy the app!",
+            icon: LeadIcon.updateNotAvailable.image,
+            primaryButtonLabel: "Go back",
+            secondaryButtonLabel: nil
+        )
+    }
 }
 
 extension ErrorViewConfiguration {
@@ -70,6 +81,26 @@ extension ErrorViewConfiguration {
             description: "We're sorry, but there seems to be an issue with our server.\n\nError: \(errorCode)\(formattedMessage).\n\nPlease try again in a couple of minutes.",
             icon: LeadIcon.backendIssue.image,
             primaryButtonLabel: "Try again",
+            secondaryButtonLabel: nil
+        )
+    }
+
+    static func makeAppUpdateAvailableConfiguration(version: String) -> ErrorViewConfiguration {
+        ErrorViewConfiguration(
+            title: "App update is available",
+            description: "There's a \(version) version of app available.\nCheck it out!",
+            icon: LeadIcon.updateAvailable.image,
+            primaryButtonLabel: "Go to store",
+            secondaryButtonLabel: "Not now"
+        )
+    }
+
+    static func makeAppUpdateRequiredConfiguration(minimalVersion: String, currentVersion: String) -> ErrorViewConfiguration {
+        ErrorViewConfiguration(
+            title: "Your app is no longer supported",
+            description: "Unfortunately, we no longer support \(currentVersion) version of the app.\nThe minimal supported version is now \(minimalVersion).\n\nPlease go to store and make the update!",
+            icon: LeadIcon.updateRequired.image,
+            primaryButtonLabel: "Go to store",
             secondaryButtonLabel: nil
         )
     }

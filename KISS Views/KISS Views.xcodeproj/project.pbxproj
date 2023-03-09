@@ -20,6 +20,7 @@
 		1E5F697E29311207C6D51FC1 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F69300DB4A978CE1AC846 /* NavigationRoute.swift */; };
 		1E5F69FB1365212E43198A6B /* LeadIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F62C2944E80FB86B137CD /* LeadIcon.swift */; };
 		1E5F6A96A25B47ADFDC7AB4A /* AppUpdateRequiredErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6E0A9384AB0BFC02D6EB /* AppUpdateRequiredErrorViewModel.swift */; };
+		1E5F6AADDB52581DAD24D33C /* NavigationRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F62898E3E922AD0858955 /* NavigationRouterTests.swift */; };
 		1E5F6AE0D1F184313B6116CE /* ImageStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F63BC949D17EBC38C2DF2 /* ImageStyles.swift */; };
 		1E5F6AFA143A077B4AE83326 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6EF5B1F0E2052BE2138B /* SecondaryButton.swift */; };
 		1E5F6BA95EDEF9F780A4F2DB /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F626EAF71F5841031CBE7 /* NavigationRouter.swift */; };
@@ -30,7 +31,6 @@
 		227D79AF29ADDC7D00089161 /* KISSViewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79AE29ADDC7D00089161 /* KISSViewsApp.swift */; };
 		227D79B329ADDC7E00089161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227D79B229ADDC7E00089161 /* Assets.xcassets */; };
 		227D79B629ADDC7E00089161 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227D79B529ADDC7E00089161 /* Preview Assets.xcassets */; };
-		227D79C029ADDC7E00089161 /* KISSViewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79BF29ADDC7E00089161 /* KISSViewsTests.swift */; };
 		227D79DA29ADE10700089161 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79D929ADE10700089161 /* HomeView.swift */; };
 		227D79E129ADE5C900089161 /* ErrorViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79E029ADE5C900089161 /* ErrorViewConfiguration.swift */; };
 		227D79E329ADE5E300089161 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79E229ADE5E300089161 /* ErrorView.swift */; };
@@ -53,6 +53,7 @@
 		1E5F60000E6794F38A164AFE /* ApplicationSecurityError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSecurityError.swift; sourceTree = "<group>"; };
 		1E5F61494E29B2444A843241 /* AppStoreVersionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreVersionProvider.swift; sourceTree = "<group>"; };
 		1E5F626EAF71F5841031CBE7 /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		1E5F62898E3E922AD0858955 /* NavigationRouterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouterTests.swift; sourceTree = "<group>"; };
 		1E5F62C2944E80FB86B137CD /* LeadIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadIcon.swift; sourceTree = "<group>"; };
 		1E5F635FA8B71150AB3A7056 /* AppUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUrl.swift; sourceTree = "<group>"; };
 		1E5F63B596DC0AF6D655129B /* ButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		227D79B229ADDC7E00089161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		227D79B529ADDC7E00089161 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		227D79BB29ADDC7E00089161 /* KISS ViewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KISS ViewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		227D79BF29ADDC7E00089161 /* KISSViewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KISSViewsTests.swift; sourceTree = "<group>"; };
 		227D79D929ADE10700089161 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		227D79E029ADE5C900089161 /* ErrorViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewConfiguration.swift; sourceTree = "<group>"; };
 		227D79E229ADE5E300089161 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -102,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E5F6078B57268D85ADBD466 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				1E5F62898E3E922AD0858955 /* NavigationRouterTests.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		1E5F62D454F95779F276EFE9 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +169,14 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		1E5F6D515290E3D00F89E102 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1E5F6078B57268D85ADBD466 /* Navigation */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		227D79A229ADDC7D00089161 = {
 			isa = PBXGroup;
 			children = (
@@ -204,7 +220,7 @@
 		227D79BE29ADDC7E00089161 /* KISS ViewsTests */ = {
 			isa = PBXGroup;
 			children = (
-				227D79BF29ADDC7E00089161 /* KISSViewsTests.swift */,
+				1E5F6D515290E3D00F89E102 /* Common */,
 			);
 			path = "KISS ViewsTests";
 			sourceTree = "<group>";
@@ -417,7 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				227D79C029ADDC7E00089161 /* KISSViewsTests.swift in Sources */,
+				1E5F6AADDB52581DAD24D33C /* NavigationRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

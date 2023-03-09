@@ -32,7 +32,7 @@ protocol NavigationRouter: AnyObject, ObservableObject {
     func pop()
 
     /// Pops navigation stack to root.
-    func popToRoot()
+    func popAll()
 
     /// Replaces navigation stack.
     ///
@@ -80,7 +80,7 @@ final class DefaultNavigationRouter: NavigationRouter {
         objectWillChange.send()
     }
 
-    func popToRoot() {
+    func popAll() {
         navigationStack = []
         objectWillChange.send()
     }

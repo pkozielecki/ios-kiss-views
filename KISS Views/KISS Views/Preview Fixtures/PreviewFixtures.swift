@@ -38,5 +38,5 @@ final class PreviewNavigationRouter: NavigationRouter {
 
     func push(screen: NavigationRoute.Screen) {}
     func pop() {}
-    func popToRoot() {}
+    func popAll() {}
 }

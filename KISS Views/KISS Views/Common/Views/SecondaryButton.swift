@@ -7,11 +7,13 @@ import SwiftUI
 
 struct SecondaryButton: View {
     let label: String
-    let onTapCallback: (() -> Void)?
+    let onTapCallback: (() async -> Void)?
 
     var body: some View {
         Button {
-            onTapCallback?()
+            Task {
+                await onTapCallback?()
+            }
         } label: {
             Text(label)
                 .secondaryButtonLabel()

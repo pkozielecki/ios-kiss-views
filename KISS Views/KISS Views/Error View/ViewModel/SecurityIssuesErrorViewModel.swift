@@ -41,7 +41,7 @@ final class SecurityIssuesErrorViewModel: ErrorViewModel {
     }
 
     /// - SeeAlso: ErrorViewModel.onPrimaryButtonTap()
-    func onPrimaryButtonTap() {
+    func onPrimaryButtonTap() async {
         popOrDismiss()
     }
 }

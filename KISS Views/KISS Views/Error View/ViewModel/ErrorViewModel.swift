@@ -21,17 +21,17 @@ protocol ErrorViewModel: AnyObject, ObservableObject {
     var viewConfigurationPublisher: Published<ErrorViewConfiguration>.Publisher { get }
 
     /// A primary button tap callback.
-    func onPrimaryButtonTap()
+    func onPrimaryButtonTap() async
 
     /// A secondary button tap callback.
-    func onSecondaryButtonTap()
+    func onSecondaryButtonTap() async
 }
 
 extension ErrorViewModel {
 
-    func onPrimaryButtonTap() {}
+    func onPrimaryButtonTap() async {}
 
-    func onSecondaryButtonTap() {}
+    func onSecondaryButtonTap() async {}
 
     func popOrDismiss() {
         switch presentationMode {

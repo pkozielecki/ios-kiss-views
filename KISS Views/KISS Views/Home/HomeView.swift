@@ -116,7 +116,12 @@ struct HomeView<Router: NavigationRouter>: View {
 extension HomeView {
 
     func makeNoNetworkErrorView(presentationMode: PresentationMode) -> ErrorView<NoNetworkErrorViewModel> {
-        let viewModel = NoNetworkErrorViewModel(router: router, presentationMode: presentationMode)
+        let connectionChecker = PlaceholderNetworkConnectionChecker()
+        let viewModel = NoNetworkErrorViewModel(
+            router: router,
+            presentationMode: presentationMode,
+            networkConnectionChecker: connectionChecker
+        )
         return ErrorView(viewModel: viewModel)
     }
 
@@ -124,7 +129,8 @@ extension HomeView {
         let viewModel = BackendUnavailableErrorViewModel(
             router: router,
             error: error,
-            presentationMode: presentationMode
+            presentationMode: presentationMode,
+            backendStatusChecker: PlaceholderBackendStatusChecker()
         )
         return ErrorView(viewModel: viewModel)
     }

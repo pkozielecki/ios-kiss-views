@@ -62,7 +62,7 @@ final class AppUpdateRequiredErrorViewModel: ErrorViewModel {
     }
 
     /// - SeeAlso: ErrorViewModel.onSecondaryButtonTap()
-    func onSecondaryButtonTap() {
+    func onSecondaryButtonTap() async {
         if case .available = appUpdateAvailabilityStatus {
             popOrDismiss()
         }

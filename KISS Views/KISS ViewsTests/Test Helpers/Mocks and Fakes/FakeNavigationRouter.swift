@@ -19,11 +19,14 @@ final class FakeNavigationRouter: NavigationRouter {
     var presentedPopupPublisher: Published<PopupRoute?>.Publisher { $presentedPopup }
 
     private(set) var didPopLastScreen: Bool?
+    private(set) var didDismissLastPopup: Bool?
 
     func set(navigationStack: [NavigationRoute]) {}
 
     func present(popup: PopupRoute.Popup) {}
-    func dismiss() {}
+    func dismiss() {
+        didDismissLastPopup = true
+    }
 
     func push(screen: NavigationRoute.Screen) {}
     func pop() {

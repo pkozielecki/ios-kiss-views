@@ -7,7 +7,7 @@ import Foundation
 import Combine
 
 /// An abstraction describing a view model to be used in generic, universal app error screens.
-protocol ErrorViewModel: AnyObject, ObservableObject {
+protocol ErrorViewModel: ObservableObject {
 
     /// A navigation router.
     var router: any NavigationRouter { get }

@@ -25,7 +25,7 @@ extension LeadIcon {
         case .backendIssue:
             return UIImage(systemName: "exclamationmark.circle", withConfiguration: .leadIcon)!
         case .jailbrokenDevice:
-            return UIImage(systemName: "lock.shield", withConfiguration: .leadIcon)!
+            return UIImage(systemName: "lock.circle", withConfiguration: .leadIcon)!
         case .appTamperedWith:
             return UIImage(systemName: "iphone.gen3.slash", withConfiguration: .leadIcon)!
         case .updateAvailable:

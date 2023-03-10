@@ -6,17 +6,17 @@
 import Foundation
 
 /// A view model for Backend Unavailable app error screen.
-final class BackendUnavailableErrorViewModel: ErrorViewModel {
+final class BackendUnavailableErrorViewModel: ErrorViewModel, Navigator {
 
     /// - SeeAlso: ErrorViewModel.viewConfiguration
     @Published var viewConfiguration: ErrorViewConfiguration
     var viewConfigurationPublished: Published<ErrorViewConfiguration> { _viewConfiguration }
     var viewConfigurationPublisher: Published<ErrorViewConfiguration>.Publisher { $viewConfiguration }
 
-    /// - SeeAlso: ErrorViewModel.router
+    /// - SeeAlso: Navigator.router
     let router: any NavigationRouter
 
-    /// - SeeAlso: ErrorViewModel.presentationMode
+    /// - SeeAlso: Navigator.presentationMode
     let presentationMode: PresentationMode
 
     private let backendStatusChecker: BackendStatusChecker

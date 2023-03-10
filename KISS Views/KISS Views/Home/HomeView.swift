@@ -89,7 +89,7 @@ struct HomeView<Router: NavigationRouter>: View {
                 case let .backendError(error):
                     makeBackendErrorView(error: error, presentationMode: .inline)
                 case let .securityIssues(error):
-                    makeSecurityIssuesErrorView(error: error, presentationMode: .inline)
+                    makeSecurityIssuesErrorView(error: error)
                 case .appUpdate:
                     makeAppUpdateInfoView(presentationMode: .inline)
                 }
@@ -103,7 +103,7 @@ struct HomeView<Router: NavigationRouter>: View {
                     case let .backendError(error):
                         makeBackendErrorView(error: error, presentationMode: .popup)
                     case let .securityIssues(error):
-                        makeSecurityIssuesErrorView(error: error, presentationMode: .popup)
+                        makeSecurityIssuesErrorView(error: error)
                     case .appUpdate:
                         makeAppUpdateInfoView(presentationMode: .popup)
                     }
@@ -135,12 +135,8 @@ extension HomeView {
         return ErrorView(viewModel: viewModel)
     }
 
-    func makeSecurityIssuesErrorView(error: ApplicationSecurityError, presentationMode: PresentationMode) -> ErrorView<SecurityIssuesErrorViewModel> {
-        let viewModel = SecurityIssuesErrorViewModel(
-            router: router,
-            error: error,
-            presentationMode: presentationMode
-        )
+    func makeSecurityIssuesErrorView(error: ApplicationSecurityError) -> ErrorView<SecurityIssuesErrorViewModel> {
+        let viewModel = SecurityIssuesErrorViewModel(error: error)
         return ErrorView(viewModel: viewModel)
     }
 

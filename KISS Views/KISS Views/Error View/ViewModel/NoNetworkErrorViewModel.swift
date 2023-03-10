@@ -8,17 +8,17 @@ import UIKit
 import Combine
 
 /// A view model for No Network app error screen.
-final class NoNetworkErrorViewModel: ErrorViewModel {
+final class NoNetworkErrorViewModel: ErrorViewModel, Navigator {
 
     /// - SeeAlso: ErrorViewModel.viewConfiguration
     @Published var viewConfiguration: ErrorViewConfiguration
     var viewConfigurationPublished: Published<ErrorViewConfiguration> { _viewConfiguration }
     var viewConfigurationPublisher: Published<ErrorViewConfiguration>.Publisher { $viewConfiguration }
 
-    /// - SeeAlso: ErrorViewModel.router
+    /// - SeeAlso: Navigator.router
     let router: any NavigationRouter
 
-    /// - SeeAlso: ErrorViewModel.presentationMode
+    /// - SeeAlso: Navigator.presentationMode
     let presentationMode: PresentationMode
 
     private let networkConnectionChecker: NetworkConnectionChecker

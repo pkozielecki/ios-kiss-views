@@ -77,7 +77,7 @@ final class ErrorViewTest: XCTestCase {
 
     func test_whenInitialisedWithJailbrokenAppConfiguration_shouldGenerateProperSnapshot() {
         //  given:
-        fakeViewModel.viewConfiguration = .jailbrokenApp
+        fakeViewModel.viewConfiguration = .jailbrokenDevice
 
         //  then:
         executeSnapshotTests(forViewController: sut.wrappedInHostingViewController(), named: "ErrorView_JailbrokenApp")

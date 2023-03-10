@@ -7,17 +7,17 @@ import Foundation
 import UIKit
 
 /// A view model for App Update status screen.
-final class AppUpdateRequiredErrorViewModel: ErrorViewModel {
+final class AppUpdateRequiredErrorViewModel: ErrorViewModel, Navigator {
 
     /// - SeeAlso: ErrorViewModel.viewConfiguration
     @Published var viewConfiguration: ErrorViewConfiguration
     var viewConfigurationPublished: Published<ErrorViewConfiguration> { _viewConfiguration }
     var viewConfigurationPublisher: Published<ErrorViewConfiguration>.Publisher { $viewConfiguration }
 
-    /// - SeeAlso: ErrorViewModel.router
+    /// - SeeAlso: Navigator.router
     let router: any NavigationRouter
 
-    /// - SeeAlso: ErrorViewModel.presentationMode
+    /// - SeeAlso: Navigator.presentationMode
     let presentationMode: PresentationMode
 
     private let appUpdateAvailabilityStatus: AppUpdateAvailabilityStatus

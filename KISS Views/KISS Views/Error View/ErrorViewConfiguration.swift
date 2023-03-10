@@ -59,8 +59,8 @@ extension ErrorViewConfiguration {
         )
     }
 
-    /// A Jailbroken app error screen configuration.
-    static var jailbrokenApp: ErrorViewConfiguration {
+    /// A Jailbroken device error screen configuration.
+    static var jailbrokenDevice: ErrorViewConfiguration {
         ErrorViewConfiguration(
             title: "Device unsafe to run the app",
             description: "We are unable to guarantee the safety of your data on a current device\nPlease contact our helpdesk for more information.",

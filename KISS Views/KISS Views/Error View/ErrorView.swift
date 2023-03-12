@@ -10,7 +10,7 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
 
     var body: some View {
         ZStack {
-            if viewModel.viewConfiguration.showPreloader {
+            if showPreloader {
                 LoaderView()
             }
 
@@ -49,15 +49,19 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
             .padding(EdgeInsets(top: 50, leading: 20, bottom: 30, trailing: 20))
             .navigationBarHidden(true)
             .blur(radius: blurRadius)
-            .animation(.easeIn(duration: 0.2), value: viewModel.viewConfiguration.showPreloader)
+            .animation(.easeIn(duration: 0.2), value: showPreloader)
         }
     }
 }
 
-extension ErrorView {
+private extension ErrorView {
 
     var blurRadius: Double {
         viewModel.viewConfiguration.showPreloader ? 10 : 0
+    }
+
+    var showPreloader: Bool {
+        viewModel.viewConfiguration.showPreloader
     }
 }
 

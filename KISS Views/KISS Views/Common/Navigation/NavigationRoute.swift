@@ -37,5 +37,8 @@ extension NavigationRoute {
 
         /// An app update availability screen.
         case appUpdate
+
+        /// A badly written error view screen, handling multiple app errors at once.
+        case badErrorView
     }
 }

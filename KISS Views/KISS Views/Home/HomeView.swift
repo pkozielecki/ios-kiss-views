@@ -18,14 +18,28 @@ struct HomeView<Router: NavigationRouter>: View {
                     router.set(navigationStack: stack)
                 })
         ) {
-            VStack {
+            VStack(spacing: 30) {
                 Spacer()
                 Text("KISS Views showcase")
                     .font(.title)
                     .bold()
                 Spacer()
                 VStack(spacing: 10) {
-                    Text("APP SCREENS (from router):")
+                    Text("\"SMART\" APP SCREENS (from nav links):")
+                    NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView)) {
+                        Text("Network error")
+                    }
+                }
+                VStack(spacing: 10) {
+                    Text("\"SMART\" APP ERROR POPUPS (from router):")
+                    Button {
+                        router.present(popup: .badErrorView)
+                    } label: {
+                        Text("Network error")
+                    }
+                }
+                VStack(spacing: 10) {
+                    Text("\"SIMPLE, STUPID\" APP SCREENS:")
                     NavigationLink(value: NavigationRoute.makeScreen(named: .noNetwork)) {
                         Text("Network error")
                     }
@@ -45,9 +59,8 @@ struct HomeView<Router: NavigationRouter>: View {
                         Text("App update availability")
                     }
                 }
-                Spacer()
                 VStack(spacing: 10) {
-                    Text("APP POPUPS: (from nav link)")
+                    Text("\"SIMPLE, STUPID\" APP POPUPS:")
                     Button {
                         router.present(popup: .noNetwork)
                     } label: {
@@ -92,6 +105,8 @@ struct HomeView<Router: NavigationRouter>: View {
                     makeSecurityIssuesErrorView(error: error)
                 case .appUpdate:
                     makeAppUpdateInfoView(presentationMode: .inline)
+                case .badErrorView:
+                    makeBadErrorView(presentationMode: .inline)
                 }
             }
             .sheet(item: $router.presentedPopup) { _ in
@@ -106,6 +121,8 @@ struct HomeView<Router: NavigationRouter>: View {
                         makeSecurityIssuesErrorView(error: error)
                     case .appUpdate:
                         makeAppUpdateInfoView(presentationMode: .popup)
+                    case .badErrorView:
+                        makeBadErrorView(presentationMode: .popup)
                     }
                 }
             }
@@ -113,7 +130,7 @@ struct HomeView<Router: NavigationRouter>: View {
     }
 }
 
-extension HomeView {
+private extension HomeView {
 
     func makeNoNetworkErrorView(presentationMode: PresentationMode) -> ErrorView<NoNetworkErrorViewModel> {
         let connectionChecker = PlaceholderNetworkConnectionChecker()
@@ -152,6 +169,19 @@ extension HomeView {
             appUpdateAvailabilityChecker: checker
         )
         return ErrorView(viewModel: viewModel)
+    }
+}
+
+private extension HomeView {
+
+    func makeBadErrorView(presentationMode: PresentationMode) -> BadErrorView {
+        let connectionChecker = PlaceholderNetworkConnectionChecker()
+        let viewModel = BadErrorViewModel(
+            router: router,
+            presentationMode: presentationMode,
+            networkConnectionChecker: connectionChecker
+        )
+        return BadErrorView(viewModel: viewModel)
     }
 }
 

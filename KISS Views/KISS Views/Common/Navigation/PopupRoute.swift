@@ -37,5 +37,8 @@ extension PopupRoute {
 
         /// An app update availability popup.
         case appUpdate
+
+        /// A badly written error view popup, handling multiple app errors at once.
+        case badErrorView
     }
 }

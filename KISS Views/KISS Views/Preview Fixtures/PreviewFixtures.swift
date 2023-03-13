@@ -40,3 +40,10 @@ final class PreviewNavigationRouter: NavigationRouter {
     func pop() {}
     func popAll() {}
 }
+
+final actor PreviewNetworkConnectionChecker: NetworkConnectionChecker {
+
+    func checkNetworkConnectivity() async -> Bool {
+        true
+    }
+}

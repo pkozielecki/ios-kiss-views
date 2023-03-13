@@ -52,6 +52,8 @@
 		227D79DA29ADE10700089161 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79D929ADE10700089161 /* HomeView.swift */; };
 		227D79E829AE03F400089161 /* PreviewFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D79E729AE03F400089161 /* PreviewFixtures.swift */; };
 		22A6A8A629BB229100F1B464 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 22A6A8A529BB229100F1B464 /* SnapshotTesting */; };
+		22A6A8AA29BEFD4100F1B464 /* BadErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6A8A929BEFD4100F1B464 /* BadErrorView.swift */; };
+		22A6A8AC29BEFD4C00F1B464 /* BadErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6A8AB29BEFD4C00F1B464 /* BadErrorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		227D79BB29ADDC7E00089161 /* KISS ViewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KISS ViewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		227D79D929ADE10700089161 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		227D79E729AE03F400089161 /* PreviewFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtures.swift; sourceTree = "<group>"; };
+		22A6A8A929BEFD4100F1B464 /* BadErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadErrorView.swift; sourceTree = "<group>"; };
+		22A6A8AB29BEFD4C00F1B464 /* BadErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadErrorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,14 @@
 				1E5F62898E3E922AD0858955 /* NavigationRouterTests.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		1E5F622E343029618958102E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				22A6A8AB29BEFD4C00F1B464 /* BadErrorViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1E5F62D454F95779F276EFE9 /* Navigation */ = {
@@ -279,6 +291,8 @@
 		1E5F6E7D51E94608080BF8B9 /* Bad */ = {
 			isa = PBXGroup;
 			children = (
+				1E5F622E343029618958102E /* ViewModel */,
+				22A6A8A929BEFD4100F1B464 /* BadErrorView.swift */,
 			);
 			path = Bad;
 			sourceTree = "<group>";
@@ -532,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				227D79DA29ADE10700089161 /* HomeView.swift in Sources */,
+				22A6A8AC29BEFD4C00F1B464 /* BadErrorViewModel.swift in Sources */,
 				227D79E829AE03F400089161 /* PreviewFixtures.swift in Sources */,
 				2231521D29B9EA7A00FE2660 /* LoaderView.swift in Sources */,
 				227D79AF29ADDC7D00089161 /* KISSViewsApp.swift in Sources */,
@@ -556,6 +571,7 @@
 				1E5F6CD4588AD3533B6A267B /* BackendStatusChecker.swift in Sources */,
 				1E5F6251C4EF083AE5B24DB2 /* ErrorViewModel.swift in Sources */,
 				1E5F6D6D45300D3D21A7BA02 /* NoNetworkErrorViewModel.swift in Sources */,
+				22A6A8AA29BEFD4100F1B464 /* BadErrorView.swift in Sources */,
 				1E5F6946585B55755B5A802C /* BackendUnavailableErrorViewModel.swift in Sources */,
 				1E5F6AB3CEABD631BCB1CB1B /* SecurityIssuesErrorViewModel.swift in Sources */,
 				1E5F6CD69029EB4EFB38FD79 /* AppUpdateRequiredErrorViewModel.swift in Sources */,

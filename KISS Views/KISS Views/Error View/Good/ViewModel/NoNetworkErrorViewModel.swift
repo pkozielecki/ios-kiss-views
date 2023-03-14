@@ -46,7 +46,7 @@ final class NoNetworkErrorViewModel: ErrorViewModel, Navigator {
         let result = await networkConnectionChecker.checkNetworkConnectivity()
         viewConfiguration = viewConfiguration.showingPreloader(false)
         if result {
-            popOrDismiss()
+            await popOrDismiss()
         }
     }
 }

@@ -18,7 +18,7 @@ protocol Navigator {
 extension Navigator {
 
     /// Depending on presentation mode: either pops or dismisses last displayed screen / popup.
-    func popOrDismiss() {
+    @MainActor func popOrDismiss() async {
         switch presentationMode {
         case .inline:
             router.pop()

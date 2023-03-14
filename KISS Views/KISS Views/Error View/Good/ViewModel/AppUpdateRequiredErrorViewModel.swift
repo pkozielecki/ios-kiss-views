@@ -29,7 +29,7 @@ final class AppUpdateRequiredErrorViewModel: ErrorViewModel, Navigator {
     ///   - router: a navigation router.
     ///   - presentationMode: a screen presentation mode.
     ///   - appstoreVersion: an app version currently available in the store.
-    ///   - appUpdateAvailabilityChecker: a current app version provider.
+    ///   - appUpdateAvailabilityChecker:  an app update availability checker.
     ///   - urlOpener: an app URL opener.
     init(
         router: any NavigationRouter,
@@ -55,7 +55,7 @@ final class AppUpdateRequiredErrorViewModel: ErrorViewModel, Navigator {
     func onPrimaryButtonTap() async {
         switch appUpdateAvailabilityStatus {
         case .notNeeded:
-            popOrDismiss()
+            await popOrDismiss()
         case .available, .required:
             openAppStoreUrl()
         }
@@ -64,7 +64,7 @@ final class AppUpdateRequiredErrorViewModel: ErrorViewModel, Navigator {
     /// - SeeAlso: ErrorViewModel.onSecondaryButtonTap()
     func onSecondaryButtonTap() async {
         if case .available = appUpdateAvailabilityStatus {
-            popOrDismiss()
+            await popOrDismiss()
         }
     }
 }

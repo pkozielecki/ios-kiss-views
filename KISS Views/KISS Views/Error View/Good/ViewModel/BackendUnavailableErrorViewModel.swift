@@ -49,7 +49,7 @@ final class BackendUnavailableErrorViewModel: ErrorViewModel, Navigator {
         case let .issueDetected(error):
             viewConfiguration = BackendUnavailableErrorViewModel.composeViewConfiguration(error: error)
         case .ok:
-            popOrDismiss()
+            await popOrDismiss()
         }
     }
 }

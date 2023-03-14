@@ -39,6 +39,6 @@ extension NavigationRoute {
         case appUpdate
 
         /// A badly written error view screen, handling multiple app errors at once.
-        case badErrorView(NetworkError)
+        case badErrorView(NetworkError?, AppUpdateAvailabilityStatus?)
     }
 }

@@ -27,32 +27,56 @@ struct HomeView<Router: NavigationRouter>: View {
                     Divider()
                     VStack(spacing: 10) {
                         Text("\"SMART\" APP SCREENS (from nav links):")
-                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.notFound))) {
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.notFound, nil))) {
                             Text("Network error")
                         }
-                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.serverMaintenance(message: nil)))) {
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.serverMaintenance(message: nil), nil))) {
                             Text("Backend under maintenance")
                         }
-                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.serverError(code: 520, message: "Hosting down")))) {
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.serverError(code: 520, message: "Hosting down"), nil))) {
                             Text("Backend down")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(nil, .notNeeded))) {
+                            Text("App update not available")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(nil, .available(availableUpdate: "1.2.0")))) {
+                            Text("App update available")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(nil, .required(minimumSupportedVersion: "1.2.0", currentVersion: "1.1.0")))) {
+                            Text("App update required")
                         }
                     }
                     VStack(spacing: 10) {
                         Text("\"SMART\" APP ERROR POPUPS (from router):")
                         Button {
-                            router.present(popup: .badErrorView(.notFound))
+                            router.present(popup: .badErrorView(.notFound, nil))
                         } label: {
                             Text("Network error")
                         }
                         Button {
-                            router.present(popup: .badErrorView(.serverMaintenance(message: nil)))
+                            router.present(popup: .badErrorView(.serverMaintenance(message: nil), nil))
                         } label: {
                             Text("Backend under maintenance")
                         }
                         Button {
-                            router.present(popup: .badErrorView(.serverError(code: 520, message: "Hosting down")))
+                            router.present(popup: .badErrorView(.serverError(code: 520, message: "Hosting down"), nil))
                         } label: {
                             Text("Backend down")
+                        }
+                        Button {
+                            router.present(popup: .badErrorView(nil, .notNeeded))
+                        } label: {
+                            Text("App update not available")
+                        }
+                        Button {
+                            router.present(popup: .badErrorView(nil, .available(availableUpdate: "1.2.0")))
+                        } label: {
+                            Text("App update available")
+                        }
+                        Button {
+                            router.present(popup: .badErrorView(nil, .required(minimumSupportedVersion: "1.2.0", currentVersion: "1.1.0")))
+                        } label: {
+                            Text("App update required")
                         }
                     }
                     Divider()
@@ -123,8 +147,8 @@ struct HomeView<Router: NavigationRouter>: View {
                         makeSecurityIssuesErrorView(error: error)
                     case .appUpdate:
                         makeAppUpdateInfoView(presentationMode: .inline)
-                    case let .badErrorView(error):
-                        makeBadErrorView(presentationMode: .inline, error: error)
+                    case let .badErrorView(error, updateStatus):
+                        makeBadErrorView(presentationMode: .inline, error: error, updateStatus: updateStatus)
                     }
                 }
                 .sheet(item: $router.presentedPopup) { _ in
@@ -139,8 +163,8 @@ struct HomeView<Router: NavigationRouter>: View {
                             makeSecurityIssuesErrorView(error: error)
                         case .appUpdate:
                             makeAppUpdateInfoView(presentationMode: .popup)
-                        case let .badErrorView(error):
-                            makeBadErrorView(presentationMode: .popup, error: error)
+                        case let .badErrorView(error, updateStatus):
+                            makeBadErrorView(presentationMode: .popup, error: error, updateStatus: updateStatus)
                         }
                     }
                 }
@@ -193,9 +217,14 @@ private extension HomeView {
 
 private extension HomeView {
 
-    func makeBadErrorView(presentationMode: PresentationMode, error: NetworkError) -> BadErrorView {
+    func makeBadErrorView(
+        presentationMode: PresentationMode,
+        error: NetworkError?,
+        updateStatus: AppUpdateAvailabilityStatus?
+    ) -> BadErrorView {
         let viewModel = BadErrorViewModel(
             error: error,
+            appUpdateAvailabilityStatus: updateStatus,
             router: router,
             presentationMode: presentationMode,
             networkConnectionChecker: PlaceholderNetworkConnectionChecker(),

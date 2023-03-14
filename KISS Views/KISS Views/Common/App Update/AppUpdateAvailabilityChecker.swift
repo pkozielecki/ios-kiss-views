@@ -6,7 +6,7 @@
 import Foundation
 
 /// An enumeration describing app updates availability status.
-enum AppUpdateAvailabilityStatus: Equatable {
+enum AppUpdateAvailabilityStatus: Equatable, Hashable, Codable {
     case notNeeded
     case available(availableUpdate: String)
     case required(minimumSupportedVersion: String, currentVersion: String)

@@ -29,9 +29,9 @@ extension LeadIcon {
         case .appTamperedWith:
             return UIImage(systemName: "iphone.gen3.slash", withConfiguration: .leadIcon)!
         case .updateAvailable:
-            return UIImage(systemName: "apple.logo", withConfiguration: .leadIcon)!
-        case .updateNotAvailable:
             return UIImage(systemName: "arrow.down.heart", withConfiguration: .leadIcon)!
+        case .updateNotAvailable:
+            return UIImage(systemName: "checkmark.seal.fill", withConfiguration: .leadIcon)!
         case .updateRequired:
             return UIImage(systemName: "arrow.clockwise.heart", withConfiguration: .leadIcon)!
         }

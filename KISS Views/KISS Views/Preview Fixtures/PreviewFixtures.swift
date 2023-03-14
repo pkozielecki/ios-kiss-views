@@ -47,3 +47,10 @@ final actor PreviewNetworkConnectionChecker: NetworkConnectionChecker {
         true
     }
 }
+
+final actor PreviewBackendStatusChecker: BackendStatusChecker {
+
+    func checkBackendStatus() async -> BackendStatus {
+        .ok
+    }
+}

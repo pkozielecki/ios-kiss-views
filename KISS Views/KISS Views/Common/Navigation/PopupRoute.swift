@@ -39,6 +39,6 @@ extension PopupRoute {
         case appUpdate
 
         /// A badly written error view popup, handling multiple app errors at once.
-        case badErrorView
+        case badErrorView(NetworkError)
     }
 }

@@ -18,111 +18,130 @@ struct HomeView<Router: NavigationRouter>: View {
                     router.set(navigationStack: stack)
                 })
         ) {
-            VStack(spacing: 30) {
-                Spacer()
-                Text("KISS Views showcase")
-                    .font(.title)
-                    .bold()
-                Spacer()
-                VStack(spacing: 10) {
-                    Text("\"SMART\" APP SCREENS (from nav links):")
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView)) {
-                        Text("Network error")
+            ScrollView {
+                VStack(spacing: 30) {
+                    Spacer()
+                    Text("KISS Views showcase")
+                        .font(.title)
+                        .bold()
+                    Divider()
+                    VStack(spacing: 10) {
+                        Text("\"SMART\" APP SCREENS (from nav links):")
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.notFound))) {
+                            Text("Network error")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.serverMaintenance(message: nil)))) {
+                            Text("Backend under maintenance")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .badErrorView(.serverError(code: 520, message: "Hosting down")))) {
+                            Text("Backend down")
+                        }
                     }
+                    VStack(spacing: 10) {
+                        Text("\"SMART\" APP ERROR POPUPS (from router):")
+                        Button {
+                            router.present(popup: .badErrorView(.notFound))
+                        } label: {
+                            Text("Network error")
+                        }
+                        Button {
+                            router.present(popup: .badErrorView(.serverMaintenance(message: nil)))
+                        } label: {
+                            Text("Backend under maintenance")
+                        }
+                        Button {
+                            router.present(popup: .badErrorView(.serverError(code: 520, message: "Hosting down")))
+                        } label: {
+                            Text("Backend down")
+                        }
+                    }
+                    Divider()
+                    VStack(spacing: 10) {
+                        Text("\"SIMPLE, STUPID\" APP SCREENS:")
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .noNetwork)) {
+                            Text("Network error")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .backendError(.serverMaintenance(message: nil)))) {
+                            Text("Backend under maintenance")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .backendError(NetworkError(code: 511, message: "Database init failed")!))) {
+                            Text("Backend down")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.jailbrokenDevice))) {
+                            Text("Jailbroken device")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.appTamperedWith))) {
+                            Text("Tampered app")
+                        }
+                        NavigationLink(value: NavigationRoute.makeScreen(named: .appUpdate)) {
+                            Text("App update availability")
+                        }
+                    }
+                    VStack(spacing: 10) {
+                        Text("\"SIMPLE, STUPID\" APP POPUPS:")
+                        Button {
+                            router.present(popup: .noNetwork)
+                        } label: {
+                            Text("Network error")
+                        }
+                        Button {
+                            router.present(popup: .backendError(.serverMaintenance(message: nil)))
+                        } label: {
+                            Text("Backend under maintenance")
+                        }
+                        Button {
+                            router.present(popup: .backendError(NetworkError(code: 511, message: "Database init failed")!))
+                        } label: {
+                            Text("Backend down")
+                        }
+                        Button {
+                            router.present(popup: .securityIssues(.jailbrokenDevice))
+                        } label: {
+                            Text("Jailbroken device")
+                        }
+                        Button {
+                            router.present(popup: .securityIssues(.appTamperedWith))
+                        } label: {
+                            Text("Tampered app")
+                        }
+                        Button {
+                            router.present(popup: .appUpdate)
+                        } label: {
+                            Text("App update availability")
+                        }
+                    }
+                    Spacer()
                 }
-                VStack(spacing: 10) {
-                    Text("\"SMART\" APP ERROR POPUPS (from router):")
-                    Button {
-                        router.present(popup: .badErrorView)
-                    } label: {
-                        Text("Network error")
-                    }
-                }
-                VStack(spacing: 10) {
-                    Text("\"SIMPLE, STUPID\" APP SCREENS:")
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .noNetwork)) {
-                        Text("Network error")
-                    }
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .backendError(.serverMaintenance(message: nil)))) {
-                        Text("Backend under maintenance")
-                    }
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .backendError(NetworkError(code: 511, message: "Database init failed")!))) {
-                        Text("Backend down")
-                    }
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.jailbrokenDevice))) {
-                        Text("Jailbroken device")
-                    }
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .securityIssues(.appTamperedWith))) {
-                        Text("Tampered app")
-                    }
-                    NavigationLink(value: NavigationRoute.makeScreen(named: .appUpdate)) {
-                        Text("App update availability")
-                    }
-                }
-                VStack(spacing: 10) {
-                    Text("\"SIMPLE, STUPID\" APP POPUPS:")
-                    Button {
-                        router.present(popup: .noNetwork)
-                    } label: {
-                        Text("Network error")
-                    }
-                    Button {
-                        router.present(popup: .backendError(.serverMaintenance(message: nil)))
-                    } label: {
-                        Text("Backend under maintenance")
-                    }
-                    Button {
-                        router.present(popup: .backendError(NetworkError(code: 511, message: "Database init failed")!))
-                    } label: {
-                        Text("Backend down")
-                    }
-                    Button {
-                        router.present(popup: .securityIssues(.jailbrokenDevice))
-                    } label: {
-                        Text("Jailbroken device")
-                    }
-                    Button {
-                        router.present(popup: .securityIssues(.appTamperedWith))
-                    } label: {
-                        Text("Tampered app")
-                    }
-                    Button {
-                        router.present(popup: .appUpdate)
-                    } label: {
-                        Text("App update availability")
-                    }
-                }
-                Spacer()
-            }
-            .navigationDestination(for: NavigationRoute.self) { route in
-                //  Handling app screens, pushed to the navigation stack:
-                switch route.screen {
-                case .noNetwork:
-                    makeNoNetworkErrorView(presentationMode: .inline)
-                case let .backendError(error):
-                    makeBackendErrorView(error: error, presentationMode: .inline)
-                case let .securityIssues(error):
-                    makeSecurityIssuesErrorView(error: error)
-                case .appUpdate:
-                    makeAppUpdateInfoView(presentationMode: .inline)
-                case .badErrorView:
-                    makeBadErrorView(presentationMode: .inline)
-                }
-            }
-            .sheet(item: $router.presentedPopup) { _ in
-                if let $popup = Binding($router.presentedPopup) {
-                    //  Handling app popups, presented as sheets:
-                    switch $popup.wrappedValue.popup {
+                .navigationDestination(for: NavigationRoute.self) { route in
+                    //  Handling app screens, pushed to the navigation stack:
+                    switch route.screen {
                     case .noNetwork:
-                        makeNoNetworkErrorView(presentationMode: .popup)
+                        makeNoNetworkErrorView(presentationMode: .inline)
                     case let .backendError(error):
-                        makeBackendErrorView(error: error, presentationMode: .popup)
+                        makeBackendErrorView(error: error, presentationMode: .inline)
                     case let .securityIssues(error):
                         makeSecurityIssuesErrorView(error: error)
                     case .appUpdate:
-                        makeAppUpdateInfoView(presentationMode: .popup)
-                    case .badErrorView:
-                        makeBadErrorView(presentationMode: .popup)
+                        makeAppUpdateInfoView(presentationMode: .inline)
+                    case let .badErrorView(error):
+                        makeBadErrorView(presentationMode: .inline, error: error)
+                    }
+                }
+                .sheet(item: $router.presentedPopup) { _ in
+                    if let $popup = Binding($router.presentedPopup) {
+                        //  Handling app popups, presented as sheets:
+                        switch $popup.wrappedValue.popup {
+                        case .noNetwork:
+                            makeNoNetworkErrorView(presentationMode: .popup)
+                        case let .backendError(error):
+                            makeBackendErrorView(error: error, presentationMode: .popup)
+                        case let .securityIssues(error):
+                            makeSecurityIssuesErrorView(error: error)
+                        case .appUpdate:
+                            makeAppUpdateInfoView(presentationMode: .popup)
+                        case let .badErrorView(error):
+                            makeBadErrorView(presentationMode: .popup, error: error)
+                        }
                     }
                 }
             }
@@ -174,12 +193,13 @@ private extension HomeView {
 
 private extension HomeView {
 
-    func makeBadErrorView(presentationMode: PresentationMode) -> BadErrorView {
-        let connectionChecker = PlaceholderNetworkConnectionChecker()
+    func makeBadErrorView(presentationMode: PresentationMode, error: NetworkError) -> BadErrorView {
         let viewModel = BadErrorViewModel(
+            error: error,
             router: router,
             presentationMode: presentationMode,
-            networkConnectionChecker: connectionChecker
+            networkConnectionChecker: PlaceholderNetworkConnectionChecker(),
+            backendStatusChecker: PlaceholderBackendStatusChecker()
         )
         return BadErrorView(viewModel: viewModel)
     }

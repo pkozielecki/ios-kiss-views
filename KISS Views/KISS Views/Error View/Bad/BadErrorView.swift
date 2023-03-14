@@ -19,22 +19,22 @@ struct BadErrorView: View {
                 Spacer()
 
                 //  Lead icon:
-                Image(uiImage: LeadIcon.network.image)
+                Image(uiImage: icon)
                     .leadIcon()
 
                 //  Title text:
-                Text("No network!")
+                Text(title)
                     .errorViewTitle()
 
                 //  Description text:
-                Text("I'm unable to connect to the Internet.\nUse the button below to check the connection.")
+                Text(description)
                     .errorViewDescription()
 
                 Spacer()
 
                 /// A check connection button:
-                PrimaryButton(label: "Check connection") {
-                    await viewModel.checkConnection()
+                PrimaryButton(label: buttonLabel) {
+                    await handlePrimaryButtonTapped()
                 }
             }
             .padding(EdgeInsets(top: 50, leading: 20, bottom: 30, trailing: 20))
@@ -45,12 +45,70 @@ struct BadErrorView: View {
     }
 }
 
+private extension BadErrorView {
+    var icon: UIImage {
+        switch viewModel.error {
+        case .serverMaintenance:
+            return LeadIcon.backendMaintenance.image
+        case .serverError:
+            return LeadIcon.backendIssue.image
+        default:
+            return LeadIcon.network.image
+        }
+    }
+
+    var title: String {
+        switch viewModel.error {
+        case .serverMaintenance:
+            return "The server is under maintenance"
+        case .serverError:
+            return "Unexpected server issue"
+        default:
+            return "No network!"
+        }
+    }
+
+    var description: String {
+        switch viewModel.error {
+        case .serverMaintenance:
+            return "We're sorry, but our server is being updated.\nPlease try again in a couple of minutes."
+        case let .serverError(errorCode, message):
+            let formattedMessage = message != nil ? " - \(message!)" : ""
+            return "We're sorry, but there seems to be an issue with our server.\n\nError: \(errorCode)\(formattedMessage).\n\nPlease try again in a couple of minutes."
+        default:
+            return "I'm unable to connect to the Internet.\nUse the button below to check the connection."
+        }
+    }
+
+    var buttonLabel: String {
+        switch viewModel.error {
+        case .serverMaintenance:
+            return "Refresh backend status"
+        case .serverError:
+            return "Try again"
+        default:
+            return "Check connection"
+        }
+    }
+
+    func handlePrimaryButtonTapped() async {
+        switch viewModel.error {
+        case .serverMaintenance, .serverError:
+            await viewModel.checkBackendStatus()
+        default:
+            await viewModel.checkConnection()
+        }
+    }
+}
+
 struct BadErrorView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = BadErrorViewModel(
+            error: .serverMaintenance(message: ""),
             router: PreviewNavigationRouter(),
             presentationMode: .inline,
-            networkConnectionChecker: PreviewNetworkConnectionChecker()
+            networkConnectionChecker: PreviewNetworkConnectionChecker(),
+            backendStatusChecker: PreviewBackendStatusChecker()
         )
         return BadErrorView(viewModel: viewModel)
     }

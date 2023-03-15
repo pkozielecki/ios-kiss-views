@@ -7,8 +7,9 @@ Welcome to the demonstration of **simple, universal** and **generic** SwiftUI **
 
 ## Main Features
 * Pure SwiftUI
+* A simple, generic `AppErrorView` linkable with `ViewModel`s handling different app error / business cases.
+* A badly-written, multipurpose `BadErrorView` added for comparison
 * Navigation based on Router and NavigationStack
-* A badly-written, multipurpose view added for comparison (`BadErrorView`)
 * Sample Unit Tests coverage
 
 ## Integration
@@ -37,7 +38,7 @@ Each of the cases above has a dedicated View Model responsible for providing vie
 ### Badly written, _"smart"_ view (for reference)
 
 The app contains also badly written, _"smart"_ `BadErrorView` (with bound `BadErrorViewModel`).\
-The view also visualises different app error, but the way is implemented is complicated and not sustainable throughout the life of the project.\
+The view also visualises different app errors, but the way is implemented is complicated and not sustainable throughout the life of the project.\
 **The purpose of this code is to visualise how quickly a rather simple view can grow (in size and complexity) when new responsibilities are added to it.**\
 Please refer to the commit history between `fde934ed002e6a23844c27f9a77ddf61d27acf00` and `5dafddd3763c2dba7208761d1c71d96cf1130cb7`.
 

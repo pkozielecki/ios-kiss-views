@@ -3,13 +3,13 @@
 //  KISS Views
 //
 
-import UIKit
+import SwiftUI
 
 /// A structure describing configuration for universal application error screen.
-struct ErrorViewConfiguration: Hashable {
+struct ErrorViewConfiguration: Equatable {
     let title: String
     let description: String
-    let icon: UIImage
+    let icon: Image
     let showPreloader: Bool
     let primaryButtonLabel: String?
     let secondaryButtonLabel: String?

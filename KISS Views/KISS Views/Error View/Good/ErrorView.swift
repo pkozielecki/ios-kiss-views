@@ -19,7 +19,7 @@ struct ErrorView<ViewModel>: View where ViewModel: ErrorViewModel {
                 Spacer()
 
                 //  Lead icon:
-                Image(uiImage: viewModel.viewConfiguration.icon)
+                viewModel.viewConfiguration.icon
                     .leadIcon()
 
                 //  Title text:

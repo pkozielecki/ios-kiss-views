@@ -3,7 +3,7 @@
 //  KISS Views
 //
 
-import UIKit
+import SwiftUI
 
 /// An enumeration describing ErrorView leading icons.
 enum LeadIcon: String {
@@ -16,29 +16,24 @@ enum LeadIcon: String {
 extension LeadIcon {
 
     /// Creates an image representing a given icon type.
-    var image: UIImage {
+    var image: Image {
         switch self {
         case .network:
-            return UIImage(systemName: "network", withConfiguration: .leadIcon)!
+            return Image(systemName: "network")
         case .backendMaintenance:
-            return UIImage(systemName: "wrench.and.screwdriver", withConfiguration: .leadIcon)!
+            return Image(systemName: "wrench.and.screwdriver")
         case .backendIssue:
-            return UIImage(systemName: "exclamationmark.circle", withConfiguration: .leadIcon)!
+            return Image(systemName: "exclamationmark.circle")
         case .jailbrokenDevice:
-            return UIImage(systemName: "lock.circle", withConfiguration: .leadIcon)!
+            return Image(systemName: "lock.circle")
         case .appTamperedWith:
-            return UIImage(systemName: "iphone.gen3.slash", withConfiguration: .leadIcon)!
+            return Image(systemName: "iphone.gen3.slash")
         case .updateAvailable:
-            return UIImage(systemName: "arrow.down.heart", withConfiguration: .leadIcon)!
+            return Image(systemName: "arrow.down.heart")
         case .updateNotAvailable:
-            return UIImage(systemName: "checkmark.seal.fill", withConfiguration: .leadIcon)!
+            return Image(systemName: "checkmark.seal.fill")
         case .updateRequired:
-            return UIImage(systemName: "arrow.clockwise.heart", withConfiguration: .leadIcon)!
+            return Image(systemName: "arrow.clockwise.heart")
         }
     }
-}
-
-extension UIImage.Configuration {
-
-    static let leadIcon = UIImage.SymbolConfiguration(pointSize: 100, weight: .bold, scale: .large)
 }

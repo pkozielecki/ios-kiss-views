@@ -19,8 +19,7 @@ struct BadErrorView: View {
                 Spacer()
 
                 //  Lead icon:
-                Image(uiImage: icon)
-                    .leadIcon()
+                icon.leadIcon()
 
                 //  Title text:
                 Text(title)
@@ -53,7 +52,7 @@ struct BadErrorView: View {
 }
 
 private extension BadErrorView {
-    var icon: UIImage {
+    var icon: Image {
         if let error = viewModel.error {
             switch error {
             case .serverMaintenance:
@@ -73,7 +72,7 @@ private extension BadErrorView {
                 return LeadIcon.updateRequired.image
             }
         }
-        return UIImage()
+        return Image(uiImage: UIImage())
     }
 
     var title: String {
